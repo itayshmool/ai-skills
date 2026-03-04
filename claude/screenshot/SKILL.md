@@ -63,7 +63,7 @@ For each screenshot, use the `Read` tool to view the image, then extract:
 
 ## Step 4: Generate Markdown Notes
 
-Create a single markdown file in the **current working directory** named `screenshots-notes-YYYY-MM-DD.md` with this structure:
+Create a `md` subfolder inside the screenshots folder if it doesn't already exist (e.g., `~/Desktop/screenshots/md/`). Save the markdown file there as `screenshots-notes-YYYY-MM-DD.md`.
 
 ```markdown
 # Screenshot Notes — YYYY-MM-DD
