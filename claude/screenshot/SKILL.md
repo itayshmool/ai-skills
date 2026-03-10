@@ -2,6 +2,7 @@
 name: screenshot
 description: On-demand screenshot processor - scans a folder for screenshots, analyzes them using vision, extracts text (OCR), and generates markdown notes in the current working directory.
 user-invocable: true
+allowed-tools: Bash, Read, Glob, Write, Edit
 ---
 
 # Screenshot Analyzer
