@@ -56,7 +56,7 @@ Infrastructure, deployment, and system operations.
 | google-play-publisher | `/google-play-publisher` | Google Play Store publishing lifecycle |
 | iterm-setup | `/iterm-setup` | iTerm2 + Oh My Zsh + Powerlevel10k setup |
 
-### Workflows (4)
+### Workflows (3)
 
 Multi-step automated processes.
 
@@ -64,10 +64,9 @@ Multi-step automated processes.
 |-------|---------|-------------|
 | feature-dev | `/feature-dev` | Guided feature development with codebase exploration |
 | pr-review-toolkit | `/pr-review-toolkit:review-pr` | Comprehensive PR review with specialized agents |
-| run-triage-agent | `/run-triage-agent` | Self-healing bug triage — polls GitHub issues, investigates, acts |
 | screenshot | `/screenshot` | Screenshot processor — vision/OCR analysis, markdown notes |
 
-### Project-Specific (3)
+### Project-Specific (4)
 
 Skills tied to a specific codebase.
 
@@ -76,6 +75,7 @@ Skills tied to a specific codebase.
 | add-backend | `/add-backend` | Scaffold a new LLM backend for multi-bark-pack |
 | domains-api-developer | `/domains-api-developer` | Domain registrar API integration expert |
 | lesson-writer | `/lesson-writer` | Zero2Claude curriculum lesson writer |
+| run-triage-agent | `/run-triage-agent` | Zero2Claude bug triage — polls GitHub issues, investigates, acts |
 
 ### Utilities (3)
 
@@ -94,8 +94,8 @@ claude/
 ├── modes/            # 5 — generic work modes
 ├── design/           # 9 — UI/UX/frontend
 ├── devops/           # 4 — infrastructure
-├── workflows/        # 4 — multi-step automation
-├── project-specific/ # 3 — codebase-tied
+├── workflows/        # 3 — multi-step automation
+├── project-specific/ # 4 — codebase-tied
 └── utilities/        # 3 — system tools
 ```
 
