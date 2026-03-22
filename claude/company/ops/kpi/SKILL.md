@@ -55,11 +55,13 @@ Severity levels: `critical`, `high`, `medium`, `low`
      --label "ops,incident,<severity>"
    ```
 2. Note the issue number returned (e.g. `#325`)
-3. Append to **Incidents** tab:
+3. Append to **Incidents** tab (use `valueInputOption: USER_ENTERED` so the formula renders):
    - ID: Auto-increment
    - Date: today
-   - Severity, Description, Owner (default: relevant department skill), Status (default: Open), Issue (`#325`), Resolution (empty)
-4. If a corresponding task is created, include the issue number in the Tasks Notes column too
+   - Severity, Description, Owner (default: relevant department skill), Status (default: Open)
+   - Issue: `=HYPERLINK("https://github.com/itayshmool/from-dev-basics-to-claude-code/issues/325", "#325")` — clickable link
+   - Resolution (empty)
+4. If a corresponding task is created, write the same HYPERLINK formula in the Tasks Notes column
 
 ### `resolve-incident`
 Mark an incident as resolved.

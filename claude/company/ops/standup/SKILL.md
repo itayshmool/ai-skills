@@ -114,9 +114,12 @@ gh issue create --repo itayshmool/from-dev-basics-to-claude-code \
 
 After creating the issue:
 1. Note the issue number (e.g. `#325`)
-2. Write it into the **Tasks** tab Notes column (e.g. `Issue #325`)
-3. Write it into the **Incidents** tab Issue column if it's an incident
-4. Reference it in the standup briefing
+2. Write a clickable HYPERLINK into the **Tasks** tab Notes column and **Incidents** tab Issue column.
+   Use `valueInputOption: USER_ENTERED` and write a Google Sheets formula:
+   ```
+   =HYPERLINK("https://github.com/itayshmool/from-dev-basics-to-claude-code/issues/325", "#325")
+   ```
+3. Reference it in the standup briefing
 
 Action items table format (updated):
 
