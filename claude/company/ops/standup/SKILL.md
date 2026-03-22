@@ -92,7 +92,11 @@ Output a standup briefing in this format:
 - None
 
 ### Action Items
-1. Review 3 unanswered help requests
+Every action item MUST have an owner. Assign to the relevant department skill or "Itay" for manual tasks.
+
+| # | Action | Owner | Dept |
+|---|--------|-------|------|
+| 1 | Review 3 unanswered help requests | /community-engage | Community |
 ```
 
 ### 6. Log the Standup

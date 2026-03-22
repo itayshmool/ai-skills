@@ -21,16 +21,18 @@ Direct interface to the Zero2Claude company dashboard. Add tasks, log incidents,
 ### `add-task`
 Add a task to the Tasks tab.
 
-**Usage:** `/ops-kpi add-task <department> "<task>" [--priority high|medium|low] [--due <date>]`
+**Usage:** `/ops-kpi add-task <department> "<task>" --owner <owner> [--priority high|medium|low] [--due <date>]`
+
+`--owner` is **required**. Use a skill name (e.g. `/devops-status`, `/community-engage`) or `Itay` for manual tasks.
 
 **Example:**
 ```
-/ops-kpi add-task devops "Set up UptimeRobot for API endpoint" --priority high --due 2026-03-28
+/ops-kpi add-task devops "Set up UptimeRobot for API endpoint" --owner Itay --priority high --due 2026-03-28
 ```
 
 Append to **Tasks** tab:
 - ID: Auto-increment (read last row, increment)
-- Department, Task, Priority (default: medium), Status (default: Open), Due, Notes
+- Department, Task, Owner (**required**), Priority (default: medium), Status (default: Open), Due, Notes
 
 ### `add-incident`
 Log an incident.
@@ -116,8 +118,8 @@ All clear.
 ### KPIs (A:K)
 | Date | Active Students | Lessons Completed | New Signups | Forum Posts | Forum Replies | Help Requests | Errors (24h) | Deploys | API p95 (ms) | Notes |
 
-### Tasks (A:G)
-| ID | Department | Task | Priority | Status | Due | Notes |
+### Tasks (A:H)
+| ID | Department | Task | Owner | Priority | Status | Due | Notes |
 
 ### Agent Log (A:F)
 | Timestamp | Agent | Action | Result | Duration | Notes |
