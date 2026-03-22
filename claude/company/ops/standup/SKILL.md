@@ -2,7 +2,7 @@
 name: ops-standup
 description: Daily company standup — checks all departments, logs KPIs, identifies blockers, writes a briefing to the Ops dashboard
 user-invocable: true
-allowed-tools: Bash, Read, Glob, Grep, mcp__google-drive__getGoogleSheetContent, mcp__google-drive__updateGoogleSheet, mcp__google-drive__appendSpreadsheetRows, mcp__render__list_services, mcp__render__list_deploys, mcp__render__list_logs, mcp__render__get_metrics
+allowed-tools: Bash, Read, Glob, Grep, mcp__google-drive__getGoogleSheetContent, mcp__google-drive__updateGoogleSheet, mcp__google-drive__appendSpreadsheetRows, mcp__render__list_services, mcp__render__list_deploys, mcp__render__list_logs, mcp__render__get_metrics, mcp__render__query_render_postgres
 argument-hint: "[--quick] [--dept <name>]"
 ---
 
@@ -99,7 +99,32 @@ Every action item MUST have an owner. Assign to the relevant department skill or
 | 1 | Review 3 unanswered help requests | /community-engage | Community |
 ```
 
-### 6. Log the Standup
+### 6. Create GitHub Issues for Action Items
+
+Every action item that surfaces a bug, incident, or work item MUST be filed as a GitHub issue.
+
+**Repo:** `itayshmool/from-dev-basics-to-claude-code` (the main product repo)
+
+```bash
+gh issue create --repo itayshmool/from-dev-basics-to-claude-code \
+  --title "[Ops Standup] <short title>" \
+  --body "<full description with context, logs, links>" \
+  --label "ops"
+```
+
+After creating the issue:
+1. Note the issue number (e.g. `#325`)
+2. Write it into the **Tasks** tab Notes column (e.g. `Issue #325`)
+3. Write it into the **Incidents** tab Issue column if it's an incident
+4. Reference it in the standup briefing
+
+Action items table format (updated):
+
+| # | Action | Owner | Dept | Issue |
+|---|--------|-------|------|-------|
+| 1 | Fix forum 500 errors | /devops-incident | DevOps | #325 |
+
+### 7. Log the Standup
 
 Append a row to the **Agent Log** tab:
 - Timestamp, "ops-standup", "Daily standup", "Completed — [summary]", duration, notes

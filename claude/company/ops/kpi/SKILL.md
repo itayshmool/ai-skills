@@ -35,9 +35,9 @@ Append to **Tasks** tab:
 - Department, Task, Owner (**required**), Priority (default: medium), Status (default: Open), Due, Notes
 
 ### `add-incident`
-Log an incident.
+Log an incident. Every incident MUST also be filed as a GitHub issue.
 
-**Usage:** `/ops-kpi add-incident <severity> "<description>" [--owner <name>]`
+**Usage:** `/ops-kpi add-incident <severity> "<description>" [--owner <skill>]`
 
 Severity levels: `critical`, `high`, `medium`, `low`
 
@@ -46,10 +46,20 @@ Severity levels: `critical`, `high`, `medium`, `low`
 /ops-kpi add-incident high "API returning 500 on /api/progress endpoint"
 ```
 
-Append to **Incidents** tab:
-- ID: Auto-increment
-- Date: today
-- Severity, Description, Owner (default: Itay), Status (default: Open), Resolution (empty)
+**Steps:**
+1. Create a GitHub issue in the product repo:
+   ```bash
+   gh issue create --repo itayshmool/from-dev-basics-to-claude-code \
+     --title "[Incident] <short title>" \
+     --body "<severity, full description, timestamps, affected endpoints, log excerpts>" \
+     --label "ops,incident,<severity>"
+   ```
+2. Note the issue number returned (e.g. `#325`)
+3. Append to **Incidents** tab:
+   - ID: Auto-increment
+   - Date: today
+   - Severity, Description, Owner (default: relevant department skill), Status (default: Open), Issue (`#325`), Resolution (empty)
+4. If a corresponding task is created, include the issue number in the Tasks Notes column too
 
 ### `resolve-incident`
 Mark an incident as resolved.
@@ -124,8 +134,8 @@ All clear.
 ### Agent Log (A:F)
 | Timestamp | Agent | Action | Result | Duration | Notes |
 
-### Incidents (A:G)
-| ID | Date | Severity | Description | Owner | Status | Resolution |
+### Incidents (A:H)
+| ID | Date | Severity | Description | Owner | Status | Issue | Resolution |
 
 ## Important Notes
 
