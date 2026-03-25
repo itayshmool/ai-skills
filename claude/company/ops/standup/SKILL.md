@@ -18,6 +18,22 @@ Run a daily standup across all Zero2Claude departments. Collects KPIs, checks sy
 
 ## Workflow
 
+### 0. Preflight Checks
+
+Before collecting KPIs, verify required configuration:
+
+```bash
+# Check if STATS_API_KEY exists in .env
+if ! grep -q "STATS_API_KEY=" .env; then
+  echo "❌ ERROR: STATS_API_KEY missing from .env"
+  echo "Get it from: Render Dashboard → terminal-trainer-api → Environment → STATS_API_KEY"
+  echo "Or ask the user for it (it should have been provided previously)"
+  exit 1
+fi
+```
+
+If the key is missing, stop and request it from the user. Do not proceed with KPI collection.
+
 ### 1. Collect KPIs from Production
 
 Query the production database via Render MCP tools and API probes:
