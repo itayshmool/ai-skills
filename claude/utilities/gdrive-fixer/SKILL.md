@@ -86,6 +86,46 @@ Requires the Google Drive MCP server (`mcp__google-drive__*` tools).
 
 ---
 
+## Troubleshooting
+
+### Google auth popup fails every session with `Error 400: invalid_scope`
+
+Symptom: a Google OAuth page opens on every new Claude Code session for the
+"gdrive-fixer" OAuth app and fails with *"Some requested scopes cannot be
+shown: [https://www.googleapis.com/auth/generative-language] … Error 400:
+invalid_scope"*.
+
+**Cause:** the MCP server requested the `generative-language` OAuth scope,
+which isn't enabled on the OAuth consent screen. Google rejects the *entire*
+auth request, so no token is ever saved to `~/.config/google-drive-mcp/tokens.json`
+and auth re-triggers every session.
+
+**Fix (applied in the server source):** `generative-language` was removed from
+`DEFAULT_SCOPES` and the `full` preset in
+`/Users/itays/dev/tools/gdrive/google-drive-mcp/src/auth/scopes.ts`, then
+rebuilt with `npm run build`. The alias is kept so it can be opted into via
+the `GOOGLE_DRIVE_MCP_SCOPES` env var if the OAuth client ever enables it.
+Gemini-backed tools (imagen) are unaffected — they use `GEMINI_API_KEY`.
+Upstream PR: https://github.com/piotr-agier/google-drive-mcp/pull/233
+
+**Required one-time step after the fix** — complete OAuth so a token is saved
+(standalone `npm run auth` does NOT inherit the credentials path from the MCP
+config, so pass it explicitly):
+
+```bash
+cd /Users/itays/dev/tools/gdrive/google-drive-mcp && \
+  GOOGLE_DRIVE_OAUTH_CREDENTIALS="/Users/itays/dev/tools/gdrive/config/itays_config/gcp-oauth.keys.json" \
+  npm run auth
+```
+
+Approve in the browser, then restart Claude Code — the popup is gone.
+
+**General rule:** if any Google MCP re-prompts for auth every session, check
+whether its requested scopes include one the OAuth client doesn't have enabled,
+and confirm a token file actually exists in the config dir.
+
+---
+
 ## Flag: `switch <path>`
 
 Switch which Google Drive account the MCP server connects to.
